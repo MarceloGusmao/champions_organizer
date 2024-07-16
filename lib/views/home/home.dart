@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../home/ranking_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -11,23 +12,28 @@ class MyHomePage extends StatefulWidget {
 class HomePage extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  static const List<String> _titles = [
-    'Profile',
-    'Partida',
-    'Pareamento',
-    'Ranking'
+  static  List<Widget> _titles = [
+    // 'Profile',
+    // 'Partida',
+    // 'Pareamento',
+    // 'Ranking'
+    RankingScreen(),
+    RankingScreen(),
+    RankingScreen(),
+    RankingScreen()
   ];
 
 //Aqui colocar os widget depois de ter logado
-  static const List<Widget> _widgetOptions = <Widget>[
+  static  List<Widget> _widgetOptions = <Widget>[
     Text('Profile Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     Text('Partida Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     Text('Pareamento Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Ranking Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    // Text('Profile Page',
+    //     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    RankingScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -40,7 +46,7 @@ class HomePage extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_titles[_selectedIndex]),
+        //title: Text(_titles[_selectedIndex]),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
