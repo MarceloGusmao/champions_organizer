@@ -1,6 +1,5 @@
-// views/home/home_screen.dart
-
 import 'package:flutter/material.dart';
+import 'package:champions_organizer/routes/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -23,6 +22,11 @@ class HomeScreen extends StatelessWidget {
                 Navigator.pushNamed(context, '/register');
               },
               child: Text('Registrar'),
+            ),
+            SizedBox(height: 20.0),
+            ElevatedButton(onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            }, child: Text('Login'),
             ),
           ],
         ),
