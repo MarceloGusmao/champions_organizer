@@ -12,27 +12,21 @@ class MyHomePage extends StatefulWidget {
 class HomePage extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  static  List<Widget> _titles = [
-    // 'Profile',
-    // 'Partida',
-    // 'Pareamento',
-    // 'Ranking'
-    RankingScreen(),
-    RankingScreen(),
-    RankingScreen(),
-    RankingScreen()
+  static final List<String> _titles = [
+    'Profile',
+    'Partida',
+    'Pareamento',
+    'Ranking'
   ];
 
 //Aqui colocar os widget depois de ter logado
-  static  List<Widget> _widgetOptions = <Widget>[
-    Text('Profile Page',
+  static final List<Widget> _widgetOptions = <Widget>[
+    const Text('Profile Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Partida Page',
+    const Text('Partida Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Pareamento Page',
+    const Text('Pareamento Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    // Text('Profile Page',
-    //     style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     RankingScreen(),
   ];
 
@@ -46,7 +40,7 @@ class HomePage extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //title: Text(_titles[_selectedIndex]),
+        title: Text(_titles[_selectedIndex]),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

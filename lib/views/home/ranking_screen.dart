@@ -4,15 +4,13 @@ class RankingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Ranking'),
-      ),
       body: Center(
         child: CardRanking(numberOfItems: 10), // Passe o número de itens aqui
       ),
     );
   }
 }
+
 class CardRanking extends StatelessWidget {
   final int numberOfItems;
 
