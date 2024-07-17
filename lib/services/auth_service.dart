@@ -36,4 +36,8 @@ class AuthService {
       return false;
     }
   }
+
+  static Future<ParseUser?> getCurrentUser() async {
+    return await ParseUser.currentUser() as ParseUser?;
+  }
 }

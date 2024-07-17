@@ -1,5 +1,4 @@
-// main.dart
-
+import 'package:champions_organizer/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'routes/app_routes.dart';
@@ -29,14 +28,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Login',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      initialRoute: AppRoutes.initial,
-      onGenerateRoute: AppRoutes.generateRoute,
+    return FutureBuilder<ParseUser?>(
+      future: AuthService.getCurrentUser(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasData && snapshot.data != null) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Home',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            initialRoute: AppRoutes.home,
+            onGenerateRoute: AppRoutes.generateRoute,
+          );
+        } else {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Login',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            initialRoute: AppRoutes.initial,
+            onGenerateRoute: AppRoutes.generateRoute,
+          );
+        }
+      },
     );
   }
 }
