@@ -6,9 +6,6 @@ class Match extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Partida'),
-        ),
         body: ListView(
           children: [
             Container(
@@ -18,14 +15,20 @@ class Match extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Player('Player 1', valor: 7,),
-
+                      Player(
+                        'Player 1',
+                        valor: 7,
+                      ),
                       SizedBox(height: 16),
-                      Figure(width: 100, height: 100,),
+                      Figure(
+                        width: 100,
+                        height: 100,
+                      ),
                       SizedBox(height: 16),
-
-                      Player('Player 2', valor: 2,),
-
+                      Player(
+                        'Player 2',
+                        valor: 2,
+                      ),
                     ],
                   ),
                 ],
@@ -39,56 +42,80 @@ class Match extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text("ROUND 1"),
-                      Player('', valor: 2,),
-
+                      Player(
+                        '',
+                        valor: 2,
+                      ),
                       SizedBox(height: 16),
-                      Figure(width: 40, height: 40, ),
+                      Figure(
+                        width: 40,
+                        height: 40,
+                      ),
                       SizedBox(height: 16),
-
-                      Player('', valor: 1,),
+                      Player(
+                        '',
+                        valor: 1,
+                      ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text("ROUND 2"),
-                      Player('', valor: 2,),
-
+                      Player(
+                        '',
+                        valor: 2,
+                      ),
                       SizedBox(height: 16),
-                      Figure(width: 40, height: 40, ),
+                      Figure(
+                        width: 40,
+                        height: 40,
+                      ),
                       SizedBox(height: 16),
-
-                      Player('', valor: 0,),
+                      Player(
+                        '',
+                        valor: 0,
+                      ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text("ROUND 3"),
-                      Player('', valor: 3,),
-
+                      Player(
+                        '',
+                        valor: 3,
+                      ),
                       SizedBox(height: 16),
-                      Figure(width: 40, height: 40, ),
+                      Figure(
+                        width: 40,
+                        height: 40,
+                      ),
                       SizedBox(height: 16),
-
-                      Player('', valor: 1,),
+                      Player(
+                        '',
+                        valor: 1,
+                      ),
                     ],
                   ),
                   SizedBox(height: 20),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 80, vertical: 40), // Ajusta o preenchimento interno
-                      textStyle: TextStyle(fontSize: 24), // Ajusta o tamanho do texto
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 80,
+                          vertical: 40), // Ajusta o preenchimento interno
+                      textStyle:
+                          TextStyle(fontSize: 24), // Ajusta o tamanho do texto
                       minimumSize: Size(150, 60), // Tamanho mínimo do botão
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), // Bordas arredondadas
+                        borderRadius:
+                            BorderRadius.circular(20), // Bordas arredondadas
                       ),
                       elevation: 5, // Sombra do botão
                     ),
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Button in pressed'))
-                      );
+                          SnackBar(content: Text('Button in pressed')));
                     },
                     child: Text('Salvar'),
                   ),
@@ -96,8 +123,7 @@ class Match extends StatelessWidget {
               ),
             ),
           ],
-
-       ),
+        ),
       ),
     );
   }
@@ -112,13 +138,11 @@ class Round extends StatelessWidget {
   }
 }
 
-
-
 class Player extends StatelessWidget {
   final String texto;
   final double valor;
 
-  Player(this.texto, { required this.valor});
+  Player(this.texto, {required this.valor});
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +150,13 @@ class Player extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(texto, style: TextStyle(
-          fontSize: 24,
-          color: Colors.black,
-        ),),
+        Text(
+          texto,
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.black,
+          ),
+        ),
         Container(
           width: 100,
           height: 100,
@@ -153,22 +180,21 @@ class Figure extends StatelessWidget {
   final double width;
   final double height;
 
-  Figure({ required this.width, required this.height});
-  
+  Figure({required this.width, required this.height});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
       child: Column(
         children: [
-          Image.asset("../lib/assets/versus.png",
-            width: width, height: height,),
+          Image.asset(
+            "images/versus.png",
+            width: width,
+            height: height,
+          ),
         ],
       ),
     );
   }
 }
-
-
-
-

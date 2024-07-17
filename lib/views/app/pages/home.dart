@@ -28,7 +28,7 @@ class HomePage extends State<HomeScreen> {
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     Match(),
     PareamentoScreen(),
-    //RankingScreen()
+    RankingScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -78,8 +78,22 @@ class HomePage extends State<HomeScreen> {
           ],
         ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/background_app.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: _widgetOptions.elementAt(_selectedIndex),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

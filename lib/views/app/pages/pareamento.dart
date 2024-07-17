@@ -15,7 +15,7 @@ class PareamentoScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _buildNameColumn('Lucas', 'Miguel'),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               _buildNameColumn('Roberto', 'Marcos'),
             ],
           ),
@@ -40,7 +40,7 @@ class PareamentoScreen extends StatelessWidget {
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 7,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -50,7 +50,8 @@ class PareamentoScreen extends StatelessWidget {
           Text(
             '$name1 X $name2', // Inclui o "X" separando os nomes
             style: GoogleFonts.lato(
-              textStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textStyle:
+                  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
         ],
