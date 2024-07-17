@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'pareamento.dart';
 import 'ranking.dart';
+import 'match.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,10 +26,9 @@ class HomePage extends State<HomeScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     Text('Profile Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Partida Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    Match(),
     PareamentoScreen(),
-    RankingScreen()
+    //RankingScreen()
   ];
 
   void _onItemTapped(int index) {

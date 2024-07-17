@@ -3,6 +3,7 @@ import '../views/app/initialScreen.dart';
 import '../views/register/register_screen.dart'; // Importe esta linha para usar MaterialPageRoute
 import "../views/app/pages/home.dart";
 import '../views/login/login_screen.dart';
+import "../views/app/pages/match.dart";
 
 class AppRoutes {
   static const String initial = '/';
@@ -14,7 +15,7 @@ class AppRoutes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case initial:
-        return MaterialPageRoute(builder: (_) => const Initialscreen());
+        return MaterialPageRoute(builder: (_) => const Match());
       case login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case register:
