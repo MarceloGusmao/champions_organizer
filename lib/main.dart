@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Parse Login Example',
+      title: 'Login',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
