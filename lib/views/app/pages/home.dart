@@ -1,14 +1,17 @@
+import 'package:champions_organizer/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'pareamento.dart';
+import 'ranking.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
   HomePage createState() => HomePage();
 }
 
-class HomePage extends State<MyHomePage> {
+class HomePage extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   static const List<String> _titles = [
@@ -24,10 +27,8 @@ class HomePage extends State<MyHomePage> {
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
     Text('Partida Page',
         style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Pareamento Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Ranking Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    PareamentoScreen(),
+    RankingScreen()
   ];
 
   void _onItemTapped(int index) {
@@ -36,11 +37,46 @@ class HomePage extends State<MyHomePage> {
     });
   }
 
+  Future<void> _logout() async {
+    final bool response = await AuthService.logout();
+    if (response) {
+      Navigator.pushReplacementNamed(context, '/');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(_titles[_selectedIndex]),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            const UserAccountsDrawerHeader(
+              accountName: Text('Seu Nome'),
+              accountEmail: Text('seu.email@example.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text(
+                  'SN',
+                  style: TextStyle(fontSize: 40.0),
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            const Spacer(),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Logout'),
+              onTap: () {
+                _logout();
+              },
+            ),
+          ],
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

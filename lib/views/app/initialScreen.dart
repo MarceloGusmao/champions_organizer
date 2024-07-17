@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:champions_organizer/routes/app_routes.dart';
 
-class HomeScreen extends StatelessWidget {
+class Initialscreen extends StatelessWidget {
+  const Initialscreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'Championship Organizer!',
               style: TextStyle(fontSize: 24.0),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/register');
               },
-              child: Text('Registrar'),
+              child: const Text('Registrar'),
             ),
-            SizedBox(height: 20.0),
-            ElevatedButton(onPressed: () {
-              Navigator.pushNamed(context, '/login');
-            }, child: Text('Login'),
+            const SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
+              child: const Text('Login'),
             ),
           ],
         ),

@@ -14,10 +14,22 @@ class AuthService {
     }
   }
 
-  static Future<bool> register(String username, String password, String email) async {
+  static Future<bool> register(
+      String username, String password, String email) async {
     final user = ParseUser(username, password, email);
     try {
       final response = await user.signUp();
+      return response.success;
+    } catch (e) {
+      print('Registration error: $e');
+      return false;
+    }
+  }
+
+  static Future<bool> logout() async {
+    try {
+      final user = ParseUser(null, null, null);
+      final ParseResponse response = await user.logout();
       return response.success;
     } catch (e) {
       print('Registration error: $e');

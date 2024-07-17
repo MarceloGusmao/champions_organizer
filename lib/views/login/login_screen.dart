@@ -1,11 +1,11 @@
 // views/login/login_screen.dart
 
 import 'package:flutter/material.dart';
-import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import '../../services/auth_service.dart';
-import 'package:champions_organizer/views/home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -74,9 +74,9 @@ class _LoginScreenState extends State<LoginScreen> {
             _isLoading
                 ? CircularProgressIndicator()
                 : ElevatedButton(
-              onPressed: _login,
-              child: Text('Login'),
-            ),
+                    onPressed: _login,
+                    child: Text('Login'),
+                  ),
           ],
         ),
       ),

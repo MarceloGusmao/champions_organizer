@@ -8,7 +8,7 @@ import 'utils/constants.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initParse();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 Future<void> initParse() async {
@@ -25,6 +25,8 @@ Future<void> initParse() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

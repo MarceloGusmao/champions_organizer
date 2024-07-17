@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../views/home/home_screen.dart';
+import '../views/app/initialScreen.dart';
 import '../views/register/register_screen.dart'; // Importe esta linha para usar MaterialPageRoute
-import "../views/home/home.dart";
-import '../views/login/widgets/login_screen.dart';
+import "../views/app/pages/home.dart";
+import '../views/login/login_screen.dart';
 
 class AppRoutes {
   static const String initial = '/';
@@ -14,13 +14,13 @@ class AppRoutes {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case initial:
-        return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => const Initialscreen());
       case login:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
       case register:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case home:
-        return MaterialPageRoute(builder: (_) => const MyHomePage());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:
         return null;
     }
