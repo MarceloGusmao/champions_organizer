@@ -11,17 +11,20 @@ class AppRoutes {
   static const String register = '/register';
   static const String home = '/home';
   static const String homepage = '/homePage';
+  static const String match = '/match';
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case initial:
-        return MaterialPageRoute(builder: (_) => const Match());
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
       case login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
       case register:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case home:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case match:
+        return MaterialPageRoute(builder: (_) => const Match());
       default:
         return null;
     }
