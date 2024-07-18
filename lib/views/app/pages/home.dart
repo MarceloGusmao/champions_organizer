@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'pareamento.dart';
 import 'ranking.dart';
 import 'match.dart';
+import 'status_player.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,8 +25,7 @@ class HomePage extends State<HomeScreen> {
 
 //Aqui colocar os widget depois de ter logado
   static const List<Widget> _widgetOptions = <Widget>[
-    Text('Profile Page',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    StatusScreen(),
     Match(),
     PareamentoScreen(),
     RankingScreen()

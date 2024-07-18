@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    home: RankingScreen(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
-
-class RankingScreen extends StatelessWidget {
-  const RankingScreen({super.key});
+class StatusScreen extends StatelessWidget {
+  const StatusScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Center(
             child: Text('LUCAS',
                 style: TextStyle(
@@ -58,7 +52,7 @@ class CardRanking extends State<ExpandableListPage> {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: _data.length,
       itemBuilder: (context, index) {
         return Container(
@@ -95,7 +89,9 @@ class CardRanking extends State<ExpandableListPage> {
                   );
                 },
                 body: Column(
-                  children: _data[index].expandedValue.map<Widget>((ItemDetail detail) {
+                  children: _data[index]
+                      .expandedValue
+                      .map<Widget>((ItemDetail detail) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
