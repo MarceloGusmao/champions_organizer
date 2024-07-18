@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../../services/jogadores_service.dart';
 
 class PareamentoScreen extends StatelessWidget {
   const PareamentoScreen({super.key});
@@ -10,14 +11,33 @@ class PareamentoScreen extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _buildNameColumn('Lucas', 'Miguel'),
-              const SizedBox(height: 40),
-              _buildNameColumn('Roberto', 'Marcos'),
-            ],
+          child: FutureBuilder<List<String>>(
+            future: fetchJogadoress(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Text('No players found');
+              } else {
+                List<String> names = snapshot.data!;
+                return ListView.builder(
+                  itemCount: names.length ~/ 2,
+                  itemBuilder: (context, index) {
+                    int i = index * 2;
+                    String name1 = names[i];
+                    String name2 = (i + 1 < names.length) ? names[i + 1] : '';
+                    return Column(
+                      children: [
+                        _buildNameColumn(name1, name2),
+                        SizedBox(height: 40),
+                      ],
+                    );
+                  },
+                );
+              }
+            },
           ),
         ),
       ),
@@ -51,7 +71,7 @@ class PareamentoScreen extends StatelessWidget {
             '$name1 X $name2', // Inclui o "X" separando os nomes
             style: GoogleFonts.lato(
               textStyle:
-                  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
         ],
