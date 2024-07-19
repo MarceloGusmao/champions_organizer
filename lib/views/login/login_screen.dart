@@ -1,6 +1,7 @@
 // views/login/login_screen.dart
 
 import 'package:flutter/material.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import '../../services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,13 +24,13 @@ class _LoginScreenState extends State<LoginScreen> {
     final username = _usernameController.text.trim();
     final password = _passwordController.text.trim();
 
-    bool success = await AuthService.login(username, password);
+    ParseResponse response = await AuthService.login(username, password);
 
     setState(() {
       _isLoading = false;
     });
 
-    if (success) {
+    if (response.success) {
       Navigator.pushReplacementNamed(context, '/home');
     } else {
       showDialog(

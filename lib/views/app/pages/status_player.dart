@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 class StatusScreen extends StatelessWidget {
-  const StatusScreen({super.key});
+  final ParseUser user;
+  StatusScreen({required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Center(
-            child: Text('LUCAS',
+        title: Center(
+            child: Text(user.username ?? "",
                 style: TextStyle(
                     fontSize: 24,
                     color: Colors.black,

@@ -3,14 +3,14 @@
 import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 
 class AuthService {
-  static Future<bool> login(String username, String password) async {
+  static Future<ParseResponse> login(String username, String password) async {
     try {
       final user = ParseUser(username, password, null);
       final response = await user.login();
-      return response.success;
+      return response;
     } catch (e) {
       print('Login error: $e');
-      return false;
+      return e as ParseResponse;
     }
   }
 

@@ -1,6 +1,7 @@
 import 'package:champions_organizer/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk_flutter.dart';
 import 'pareamento.dart';
 import 'ranking.dart';
 import 'match.dart';
@@ -15,21 +16,29 @@ class HomeScreen extends StatefulWidget {
 
 class HomePage extends State<HomeScreen> {
   int _selectedIndex = 0;
+  ParseUser? currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCurrentUser();
+  }
+
+  Future<void> fetchCurrentUser() async {
+    ParseUser? user = await AuthService.getCurrentUser();
+    setState(() {
+      currentUser = user;
+    });
+  }
 
   static const List<String> _titles = [
-    'Profile',
+    'Perfil',
     'Partida',
     'Pareamento',
     'Ranking'
   ];
 
 //Aqui colocar os widget depois de ter logado
-  static const List<Widget> _widgetOptions = <Widget>[
-    StatusScreen(),
-    Match(),
-    PareamentoScreen(),
-    RankingScreen()
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -46,6 +55,24 @@ class HomePage extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (currentUser == null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Loading...'),
+        ),
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    List<Widget> _widgetOptions = <Widget>[
+      StatusScreen(user: currentUser!),
+      Match(),
+      PareamentoScreen(),
+      RankingScreen()
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(_titles[_selectedIndex]),
@@ -53,9 +80,9 @@ class HomePage extends State<HomeScreen> {
       drawer: Drawer(
         child: Column(
           children: <Widget>[
-            const UserAccountsDrawerHeader(
-              accountName: Text('Seu Nome'),
-              accountEmail: Text('seu.email@example.com'),
+            UserAccountsDrawerHeader(
+              accountName: Text(currentUser!.username ?? ''),
+              accountEmail: Text(currentUser!.emailAddress ?? ''),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: Text(
